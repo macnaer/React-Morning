@@ -11,7 +11,7 @@ const ContactList = ({ ContactList, onFavoriteChange }) => {
         avatar={item.avatar}
         gender={item.gender}
         favorite={item.favorite}
-        onFavoriteChange={() => onFavoriteChange}
+        onFavoriteChange={() => onFavoriteChange(item.id)}
       />
     );
   });

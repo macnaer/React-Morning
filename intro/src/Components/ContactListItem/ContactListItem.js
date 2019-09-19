@@ -41,7 +41,7 @@ class ContactListItem extends React.Component {
 
   onAvatar = () =>{
     const newAvatar = Math.floor(Math.random() * 99); 
-    console.log(newAvatar);
+    //console.log(newAvatar);
     this.setState({
       avatar: newAvatar
     });
@@ -49,7 +49,7 @@ class ContactListItem extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
 
     const { name, desc, gender } = this.props;
 

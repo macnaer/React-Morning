@@ -39,8 +39,8 @@ class App extends Component {
     ]
   };
 
-  onFavoriteChange = () => {
-    console.log("onFavoriteChange works");
+  onFavoriteChange = (id) => {
+    console.log("onFavoriteChange works", id);
   };
   render() {
     const { List } = this.state; 
