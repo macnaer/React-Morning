@@ -4,7 +4,7 @@ import ContactListItem from "../ContactListItem/ContactListItem";
 const ContactList = ({ ContactList }) => {
  
   const newItem = ContactList.map((item) =>{
-    return <ContactListItem name={item.name} desc={item.desc} avatar={item.avatar}  gender={item.gender} />;
+    return <ContactListItem id={item.id} name={item.name} desc={item.desc} avatar={item.avatar}  gender={item.gender} />;
   })
 
   return (
