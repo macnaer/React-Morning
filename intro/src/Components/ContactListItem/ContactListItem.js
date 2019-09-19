@@ -6,7 +6,7 @@ class ContactListItem extends React.Component {
     btnChange: false,
     btnText: "Contact Now",
     avatar: this.props.avatar,
-    favorite: false
+    favorite: this.props.favorite
   };
 
   onBtnClick = () => {
@@ -35,6 +35,8 @@ class ContactListItem extends React.Component {
          favorite: false
        });
     }
+
+    this.props.onFavoriteChange();
   }
 
   onAvatar = () =>{
@@ -47,6 +49,8 @@ class ContactListItem extends React.Component {
   }
 
   render() {
+    console.log(this.props);
+
     const { name, desc, gender } = this.props;
 
     let btnStyle = "btn btn-default";
