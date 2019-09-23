@@ -41,6 +41,16 @@ class App extends Component {
 
   onFavoriteChange = (id) => {
     console.log("onFavoriteChange works", id);
+    this.setState(state => {
+      const index = this.state.List.findIndex(elem => elem.id === id);
+
+      const newFavorite = this.state.List.slice();
+      newFavorite[index].favorite = !newFavorite[index].favorite;
+      console.log(newFavorite[index].favorite);
+      return {
+        favorite: !this.newFavorite
+      };
+    });
   };
   render() {
     const { List } = this.state; 

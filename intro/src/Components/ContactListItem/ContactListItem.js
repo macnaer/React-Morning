@@ -25,16 +25,16 @@ class ContactListItem extends React.Component {
   };
 
   onFavorivteClick = () =>{
-    if (!this.state.favorite){
-      this.setState({
-        favorite: true
-      });
-    }
-    else{
-       this.setState({
-         favorite: false
-       });
-    }
+    // if (!this.state.favorite){
+    //   this.setState({
+    //     favorite: true
+    //   });
+    // }
+    // else{
+    //    this.setState({
+    //      favorite: false
+    //    });
+    // }
 
     this.props.onFavoriteChange();
   }
