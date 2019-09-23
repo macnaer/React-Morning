@@ -1,7 +1,7 @@
 import React from "react";
 import ContactListItem from "../ContactListItem/ContactListItem";
 
-const ContactList = ({ ContactList, onFavoriteChange }) => {
+const ContactList = ({ ContactList, onFavoriteChange, onContactDelete }) => {
   const newItem = ContactList.map(item => {
     return (
       <ContactListItem
@@ -12,6 +12,7 @@ const ContactList = ({ ContactList, onFavoriteChange }) => {
         gender={item.gender}
         favorite={item.favorite}
         onFavoriteChange={() => onFavoriteChange(item.id)}
+        onContactDelete={() => onContactDelete(item.id)}
       />
     );
   });
