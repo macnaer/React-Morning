@@ -11,6 +11,7 @@ const ContactList = ({
   const newItem = ContactList.map(item => {
     return (
       <ContactListItem
+        key={item.id}
         id={item.id}
         name={item.name}
         desc={item.desc}

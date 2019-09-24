@@ -55,7 +55,8 @@ class ContactListItem extends React.Component {
   }
 
   render() {
-    //console.log(this.props);
+    // console.log(this.props);
+    console.log("Favorite, ",this.state.favorite);
 
     const { name, desc, gender, onContactDelete } = this.props;
 

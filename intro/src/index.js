@@ -5,7 +5,7 @@ import "./index.css";
 // Components
 import Header from "./Components/Header/Header";
 import ContactList from "./Components/ContactList/ContactList";
-
+import AddContact from "./Components/AddContact/AddContact";
 class App extends Component {
   state = {
     List: [
@@ -24,40 +24,31 @@ class App extends Component {
         desc:
           "Will Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         avatar: 12,
-        gender: "men",
-        favorite: false
+        gender: "men"
       },
       {
         id: 3,
+        favorite: false,
         name: "Arnold Swarz",
         desc:
           "Arnold Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         avatar: 96,
-        gender: "men",
-        favorite: false
+        gender: "men"
       }
     ],
     findContact: ""
   };
 
   onFavoriteChange = id => {
-    // console.log("onFavoriteChange works", id);
-    // console.log("before => ", this.state.List[2].favorite);
     this.setState(state => {
       const index = this.state.List.findIndex(elem => elem.id === id);
 
-      // console.log("index", index);
-
       const newFavorite = this.state.List.slice();
-      //console.log("newFaworite => ", newFavorite);
       newFavorite[index].favorite = !newFavorite[index].favorite;
-      // console.log(newFavorite[index].favorite);
       return {
         favorite: !this.newFavorite
       };
     });
-
-    // console.log(this.state.List[2].favorite);
   };
 
   onSearch = searchName => {
@@ -73,9 +64,14 @@ class App extends Component {
     }
 
     return items.filter(item => {
-      return item.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
+      return (
+        item.contactName.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+      );
     });
   };
+  addContact = (name, gender, desc) =>{
+    console.log("Name: ", name, " Gender: ", gender, " Desc: ", desc);
+  }
 
   onContactDelete = id => {
     console.log("onContactDelete => ", id);
@@ -110,6 +106,7 @@ class App extends Component {
             onContactDelete={this.onContactDelete}
             onSearch={this.onSearch}
           />
+          <AddContact addContact={this.addContact} />
         </div>
       </section>
     );
