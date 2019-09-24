@@ -5,7 +5,6 @@ import "./index.css";
 // Components
 import Header from "./Components/Header/Header";
 import ContactList from "./Components/ContactList/ContactList";
-import Search from "./Components/Search/Search";
 
 class App extends Component {
   state = {
@@ -37,10 +36,11 @@ class App extends Component {
         gender: "men",
         favorite: false
       }
-    ]
+    ],
+    findContact: ""
   };
 
-  onFavoriteChange = (id) => {
+  onFavoriteChange = id => {
     // console.log("onFavoriteChange works", id);
     // console.log("before => ", this.state.List[2].favorite);
     this.setState(state => {
@@ -60,12 +60,24 @@ class App extends Component {
     // console.log(this.state.List[2].favorite);
   };
 
-  onSearch = (searchName) => {
+  onSearch = searchName => {
     console.log("searchName => ", searchName);
+    this.setState({
+      findContact: searchName
+    });
+  };
 
-  }
+  onShowContact = (items, searchValue) => {
+    if (searchValue.length === 0) {
+      return items;
+    }
 
-  onContactDelete = (id) => {
+    return items.filter(item => {
+      return item.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
+    });
+  };
+
+  onContactDelete = id => {
     console.log("onContactDelete => ", id);
     this.setState(state => {
       const index = this.state.List.findIndex(elem => elem.id === id);
@@ -79,20 +91,24 @@ class App extends Component {
         List: newList
       };
     });
-  }
-
+  };
 
   render() {
-    const { List } = this.state; 
+    const showContacts = this.onShowContact(
+      this.state.List,
+      this.state.findContact
+    );
+
     return (
       <section className="row-section">
         <div className="container">
           <Header />
-          <Search onSearch={this.onSearch} />
+
           <ContactList
-            ContactList={List}
+            ContactList={showContacts}
             onFavoriteChange={this.onFavoriteChange}
             onContactDelete={this.onContactDelete}
+            onSearch={this.onSearch}
           />
         </div>
       </section>

@@ -5,15 +5,15 @@ class Search extends React.Component{
 
     onSearch = (e) => {
         //console.log(e.target.value);
-        let searchName = e.target.value;
-        this.props.onSearch(searchName);
+        const findContact = e.target.value;
+        this.props.onSearch(findContact);
     }
 
     render(){
 
         return(
             <div className="col-md-10 offset-md-1 row-block">
-                <input onChange={this.onSearch} name="Search" className="form-control" />
+                <input onChange={this.onSearch} name="Search" className="form-control searchInput" placeholder="Search..." />
             </div>
         )
     }

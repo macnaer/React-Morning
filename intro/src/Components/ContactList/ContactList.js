@@ -1,7 +1,13 @@
-import React from "react";
+import React, {Fragment} from "react";
 import ContactListItem from "../ContactListItem/ContactListItem";
+import Search from "../Search/Search";
 
-const ContactList = ({ ContactList, onFavoriteChange, onContactDelete }) => {
+const ContactList = ({
+  ContactList,
+  onFavoriteChange,
+  onContactDelete,
+  onSearch
+}) => {
   const newItem = ContactList.map(item => {
     return (
       <ContactListItem
@@ -18,9 +24,12 @@ const ContactList = ({ ContactList, onFavoriteChange, onContactDelete }) => {
   });
 
   return (
-    <div className="col-md-10 offset-md-1 row-block">
-      <ul id="sortable">{newItem}</ul>
-    </div>
+    <Fragment>
+      <Search onSearch={onSearch} />
+      <div className="col-md-10 offset-md-1 row-block">
+        <ul id="sortable">{newItem}</ul>
+      </div>
+    </Fragment>
   );
 };
 
