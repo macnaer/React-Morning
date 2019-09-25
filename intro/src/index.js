@@ -7,6 +7,9 @@ import Header from "./Components/Header/Header";
 import ContactList from "./Components/ContactList/ContactList";
 import AddContact from "./Components/AddContact/AddContact";
 class App extends Component {
+
+  counterID = 1000;
+
   state = {
     List: [
       {
@@ -28,12 +31,12 @@ class App extends Component {
       },
       {
         id: 3,
-        favorite: false,
         name: "Arnold Swarz",
         desc:
           "Arnold Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         avatar: 96,
-        gender: "men"
+        gender: "men",
+        favorite: false
       }
     ],
     findContact: ""
@@ -69,9 +72,29 @@ class App extends Component {
       );
     });
   };
-  addContact = (name, gender, desc) =>{
-    console.log("Name: ", name, " Gender: ", gender, " Desc: ", desc);
-  }
+
+  addNewContact = (name, gender, description) => {
+    return {
+      id: this.counterID++,
+      name: name,
+      desc: description,
+      gender: gender,
+      avatar: Math.floor(Math.random() * (99 - 1 + 1)) + 1,
+      favorite: false
+    };
+  };
+  addContact = (name, gender, description) => {
+    // console.log(name, " ", gender, " ", description);
+    const contact = this.addNewContact(name, gender, description);
+
+    const newContactArr = [...this.state.List, contact];
+
+    this.setState(state => {
+      return {
+        List: newContactArr
+      };
+    });
+  };
 
   onContactDelete = id => {
     console.log("onContactDelete => ", id);

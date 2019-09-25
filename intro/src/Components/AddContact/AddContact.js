@@ -9,16 +9,29 @@ class AddContact extends Component {
     desc: null
   };
 
-  onGetName = (e) =>{
-    const newName = e.target.value;
-    this.setState({
-      name: newName
-    });
-  }
+
+    getName = (e) => {
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+    getDescription = (e) => {
+        this.setState({
+            desc: e.target.value
+        }) 
+    }
+
+    onGender = (e) => {
+        // console.log(e.target.value);
+        this.setState({
+            gender: e.target.value
+        })
+    }
+
 
   onSubmit = e => {
     e.preventDefault();
-
     this.props.addContact(this.state.name, this.state.gender, this.state.desc);
   };
   render() {
@@ -29,7 +42,7 @@ class AddContact extends Component {
             type="text"
             placeholder="Name"
             className="form-control"
-            onChange={this.onGetName}
+            onChange={this.getName}
           />
           <div className="form-check">
             <input
@@ -38,6 +51,7 @@ class AddContact extends Component {
               name="usergender"
               id="usergender1"
               value="women"
+              onClick={this.onGender}
             />
             <label className="form-check-label" htmlFor="usergender1">
               Women
@@ -50,6 +64,7 @@ class AddContact extends Component {
               name="usersex"
               id="usergender2"
               value="men"
+              onClick={this.onGender}
             />
             <label className="form-check-label" htmlFor="usergender2">
               Men
@@ -59,6 +74,7 @@ class AddContact extends Component {
             type="text"
             placeholder="Description"
             className="form-control"
+            onChange={this.getDescription}
           />
           <button className="btn btn-success" type="submit">
             New Contact
