@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+// Router
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 // Components
 import Header from "./Components/Header/Header";
 import ContactList from "./Components/ContactList/ContactList";
 import AddContact from "./Components/AddContact/AddContact";
+import Contact from "./Components/Contact/Contact"
+import About from "./Components/About/About";
+import NotFound from "./Components/NotFound/NotFound";
 class App extends Component {
 
   counterID = 1000;
@@ -55,7 +61,7 @@ class App extends Component {
   };
 
   onSearch = searchName => {
-    console.log("searchName => ", searchName);
+    // console.log("searchName => ", searchName);
     this.setState({
       findContact: searchName
     });
@@ -121,15 +127,31 @@ class App extends Component {
     return (
       <section className="row-section">
         <div className="container">
-          <Header />
-
-          <ContactList
-            ContactList={showContacts}
-            onFavoriteChange={this.onFavoriteChange}
-            onContactDelete={this.onContactDelete}
-            onSearch={this.onSearch}
-          />
-          <AddContact addContact={this.addContact} />
+          <Router>
+            <Header />
+            <Switch>
+              <Route
+                path="/"
+                exact
+                render={() => (
+                  <ContactList
+                    ContactList={showContacts}
+                    onFavoriteChange={this.onFavoriteChange}
+                    onContactDelete={this.onContactDelete}
+                    onSearch={this.onSearch}
+                  />
+                )}
+              />
+              <Route path="/contact" exact component={Contact} />
+              <Route path="/about" exact component={About} />
+              <Route
+                path="/add"
+                exact
+                render={() => <AddContact addContact={this.addContact} />}
+              />
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
         </div>
       </section>
     );
