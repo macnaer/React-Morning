@@ -12,6 +12,7 @@ class App extends React.Component{
     }
     // lifecycle hooks
   // MOUNTING
+  
 
   updateNews = (country = "ua") =>{
       const news = new APIClient();
